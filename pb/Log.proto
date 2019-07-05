@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+option csharp_namespace = "Messages";
+
+message Log {
+  string guid = 1;
+  string type = 2;
+  string message = 3;
+}
+
+message LogRequest {
+      string type = 1;
+      string message = 2;
+}
+
+message LogResponse {
+    string guid = 1;
+}
+
+message GetLogRequest {
+    string guid = 1;
+}
+
+message GetLogResponse {
+    string guid = 1;
+    string message = 2;
+    string type = 3;
+}
+
+service LogService {
+  rpc Log (LogRequest) returns (LogResponse);
+  rpc GetLog (GetLogRequest) returns (GetLogResponse);
+}

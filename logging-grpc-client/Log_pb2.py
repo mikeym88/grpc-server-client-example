@@ -20,35 +20,35 @@ DESCRIPTOR = _descriptor.FileDescriptor(
   package='',
   syntax='proto3',
   serialized_options=_b('\252\002\010Messages'),
-  serialized_pb=_b('\n\tLog.proto\"2\n\x03Log\x12\x0c\n\x04guid\x18\x01 \x01(\t\x12\x0c\n\x04type\x18\x02 \x01(\t\x12\x0f\n\x07message\x18\x03 \x01(\t\"+\n\nLogRequest\x12\x0c\n\x04type\x18\x01 \x01(\t\x12\x0f\n\x07message\x18\x02 \x01(\t\"\x1b\n\x0bLogResponse\x12\x0c\n\x04guid\x18\x01 \x01(\t\"\x1d\n\rGetLogRequest\x12\x0c\n\x04guid\x18\x01 \x01(\t\"=\n\x0eGetLogResponse\x12\x0c\n\x04guid\x18\x01 \x01(\t\x12\x0f\n\x07message\x18\x02 \x01(\t\x12\x0c\n\x04type\x18\x03 \x01(\t2Y\n\nLogService\x12 \n\x03Log\x12\x0b.LogRequest\x1a\x0c.LogResponse\x12)\n\x06GetLog\x12\x0e.GetLogRequest\x1a\x0f.GetLogResponseB\x0b\xaa\x02\x08Messagesb\x06proto3')
+  serialized_pb=_b('\n\tLog.proto\"9\n\nLogMessage\x12\x0c\n\x04guid\x18\x01 \x01(\t\x12\x0c\n\x04type\x18\x02 \x01(\t\x12\x0f\n\x07message\x18\x03 \x01(\t\"&\n\nLogRequest\x12\x18\n\x03log\x18\x01 \x01(\x0b\x32\x0b.LogMessage\"\x1b\n\x0bLogResponse\x12\x0c\n\x04guid\x18\x01 \x01(\t\"\x1d\n\rGetLogRequest\x12\x0c\n\x04guid\x18\x01 \x01(\t\"*\n\x0eGetLogResponse\x12\x18\n\x03log\x18\x01 \x01(\x0b\x32\x0b.LogMessage2Y\n\nLogService\x12 \n\x03Log\x12\x0b.LogRequest\x1a\x0c.LogResponse\x12)\n\x06GetLog\x12\x0e.GetLogRequest\x1a\x0f.GetLogResponseB\x0b\xaa\x02\x08Messagesb\x06proto3')
 )
 
 
 
 
-_LOG = _descriptor.Descriptor(
-  name='Log',
-  full_name='Log',
+_LOGMESSAGE = _descriptor.Descriptor(
+  name='LogMessage',
+  full_name='LogMessage',
   filename=None,
   file=DESCRIPTOR,
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='guid', full_name='Log.guid', index=0,
+      name='guid', full_name='LogMessage.guid', index=0,
       number=1, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='type', full_name='Log.type', index=1,
+      name='type', full_name='LogMessage.type', index=1,
       number=2, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
     _descriptor.FieldDescriptor(
-      name='message', full_name='Log.message', index=2,
+      name='message', full_name='LogMessage.message', index=2,
       number=3, type=9, cpp_type=9, label=1,
       has_default_value=False, default_value=_b("").decode('utf-8'),
       message_type=None, enum_type=None, containing_type=None,
@@ -67,7 +67,7 @@ _LOG = _descriptor.Descriptor(
   oneofs=[
   ],
   serialized_start=13,
-  serialized_end=63,
+  serialized_end=70,
 )
 
 
@@ -79,16 +79,9 @@ _LOGREQUEST = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='type', full_name='LogRequest.type', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='message', full_name='LogRequest.message', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
+      name='log', full_name='LogRequest.log', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
@@ -104,8 +97,8 @@ _LOGREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=65,
-  serialized_end=108,
+  serialized_start=72,
+  serialized_end=110,
 )
 
 
@@ -135,8 +128,8 @@ _LOGRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=110,
-  serialized_end=137,
+  serialized_start=112,
+  serialized_end=139,
 )
 
 
@@ -166,8 +159,8 @@ _GETLOGREQUEST = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=139,
-  serialized_end=168,
+  serialized_start=141,
+  serialized_end=170,
 )
 
 
@@ -179,23 +172,9 @@ _GETLOGRESPONSE = _descriptor.Descriptor(
   containing_type=None,
   fields=[
     _descriptor.FieldDescriptor(
-      name='guid', full_name='GetLogResponse.guid', index=0,
-      number=1, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='message', full_name='GetLogResponse.message', index=1,
-      number=2, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
-      message_type=None, enum_type=None, containing_type=None,
-      is_extension=False, extension_scope=None,
-      serialized_options=None, file=DESCRIPTOR),
-    _descriptor.FieldDescriptor(
-      name='type', full_name='GetLogResponse.type', index=2,
-      number=3, type=9, cpp_type=9, label=1,
-      has_default_value=False, default_value=_b("").decode('utf-8'),
+      name='log', full_name='GetLogResponse.log', index=0,
+      number=1, type=11, cpp_type=10, label=1,
+      has_default_value=False, default_value=None,
       message_type=None, enum_type=None, containing_type=None,
       is_extension=False, extension_scope=None,
       serialized_options=None, file=DESCRIPTOR),
@@ -211,23 +190,25 @@ _GETLOGRESPONSE = _descriptor.Descriptor(
   extension_ranges=[],
   oneofs=[
   ],
-  serialized_start=170,
-  serialized_end=231,
+  serialized_start=172,
+  serialized_end=214,
 )
 
-DESCRIPTOR.message_types_by_name['Log'] = _LOG
+_LOGREQUEST.fields_by_name['log'].message_type = _LOGMESSAGE
+_GETLOGRESPONSE.fields_by_name['log'].message_type = _LOGMESSAGE
+DESCRIPTOR.message_types_by_name['LogMessage'] = _LOGMESSAGE
 DESCRIPTOR.message_types_by_name['LogRequest'] = _LOGREQUEST
 DESCRIPTOR.message_types_by_name['LogResponse'] = _LOGRESPONSE
 DESCRIPTOR.message_types_by_name['GetLogRequest'] = _GETLOGREQUEST
 DESCRIPTOR.message_types_by_name['GetLogResponse'] = _GETLOGRESPONSE
 _sym_db.RegisterFileDescriptor(DESCRIPTOR)
 
-Log = _reflection.GeneratedProtocolMessageType('Log', (_message.Message,), dict(
-  DESCRIPTOR = _LOG,
+LogMessage = _reflection.GeneratedProtocolMessageType('LogMessage', (_message.Message,), dict(
+  DESCRIPTOR = _LOGMESSAGE,
   __module__ = 'Log_pb2'
-  # @@protoc_insertion_point(class_scope:Log)
+  # @@protoc_insertion_point(class_scope:LogMessage)
   ))
-_sym_db.RegisterMessage(Log)
+_sym_db.RegisterMessage(LogMessage)
 
 LogRequest = _reflection.GeneratedProtocolMessageType('LogRequest', (_message.Message,), dict(
   DESCRIPTOR = _LOGREQUEST,
@@ -266,8 +247,8 @@ _LOGSERVICE = _descriptor.ServiceDescriptor(
   file=DESCRIPTOR,
   index=0,
   serialized_options=None,
-  serialized_start=233,
-  serialized_end=322,
+  serialized_start=216,
+  serialized_end=305,
   methods=[
   _descriptor.MethodDescriptor(
     name='Log',

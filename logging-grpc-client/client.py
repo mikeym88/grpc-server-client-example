@@ -17,8 +17,8 @@ stub = Log_pb2_grpc.LogServiceStub(channel)
 print("Connection up...")
 
 log1 = Log_pb2.LogRequest()
-log1.message = 'This is a sample log message.'
-log1.type = 'Info'
+log1.log.message = 'This is a sample log message.'
+log1.log.type = 'Info'
 
 
 # Synchronous

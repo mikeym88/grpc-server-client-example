@@ -6,13 +6,13 @@ namespace logging_grpc_server
 {
     public class InMemoryDb
     {
-        private static List<Messages.Log> inMemoryDb = null;
+        private static List<Messages.LogMessage> inMemoryDb = null;
         private static InMemoryDb _instance = null;
 
         protected InMemoryDb()
         {
             // Exists only to defeat instantiation.
-            inMemoryDb = new List<Messages.Log>();
+            inMemoryDb = new List<Messages.LogMessage>();
         }
 
         public static InMemoryDb GetInstance()
@@ -29,7 +29,7 @@ namespace logging_grpc_server
             Guid g = Guid.NewGuid();
             lock (inMemoryDb)
             {
-                inMemoryDb.Add(new Messages.Log()
+                inMemoryDb.Add(new Messages.LogMessage()
                 {
                     Guid = g.ToString(),
                     Message = message,
@@ -41,7 +41,7 @@ namespace logging_grpc_server
         }
 
         // https://stackoverflow.com/a/13254787/6288413
-        public Task<Messages.Log> GetLog(Guid g)
+        public Task<Messages.LogMessage> GetLog(Guid g)
         {
             foreach (var entry in inMemoryDb)
             {

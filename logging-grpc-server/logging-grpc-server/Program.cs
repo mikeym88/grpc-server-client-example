@@ -32,8 +32,8 @@ namespace logging_grpc_server
         {
             public override async Task<LogResponse> Log(LogRequest request, ServerCallContext context)
             {
-                Console.WriteLine($"Adding Log of Type {request.Type}: {request.Message}");
-                Guid g = await db.LogAsync(request.Message, request.Type);
+                Console.WriteLine($"Adding Log of Type {request.Log.Type}: {request.Log.Message}");
+                Guid g = await db.LogAsync(request.Log.Message, request.Log.Type);
                 Console.WriteLine($"Logged successully: {g}");
                 return new LogResponse()
                 {
@@ -51,9 +51,7 @@ namespace logging_grpc_server
                 var mes = await db.GetLog(Guid.Parse(request.Guid));
                 return new GetLogResponse()
                 {
-                    Guid = mes.Guid,
-                    Message = mes.Message,
-                    Type = mes.Type
+                    Log = mes
                 };
             }
         }

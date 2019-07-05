@@ -9,7 +9,7 @@ message LogMessage {
 }
 
 message LogRequest {
-    LogMessage message = 1;
+    LogMessage log = 1;
 }
 
 message LogResponse {
@@ -21,7 +21,7 @@ message GetLogRequest {
 }
 
 message GetLogResponse {
-    LogMessage message = 1;
+    LogMessage log = 1;
 }
 
 service LogService {

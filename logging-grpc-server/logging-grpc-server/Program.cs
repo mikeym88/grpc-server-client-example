@@ -11,7 +11,7 @@ namespace logging_grpc_server
         static InMemoryDb db = InMemoryDb.GetInstance();
         static void Main(string[] args)
         {
-            Console.WriteLine("Starting loggin service.");
+            Console.WriteLine("Starting logging service.");
             const int Port = 9000;
             
             Server server = new Server
@@ -32,7 +32,13 @@ namespace logging_grpc_server
         {
             public override async Task<LogResponse> Log(LogRequest request, ServerCallContext context)
             {
-                throw new NotImplementedException();
+                Console.WriteLine($"Adding Log of Type {request.Type}: {request.Message}");
+                Guid g = await db.LogAsync(request.Message, request.Type);
+                Console.WriteLine($"Logged successully: {g}");
+                return new LogResponse()
+                {
+                    Guid = g.ToString()
+                };
             }
 
             public override async Task<GetLogResponse> GetLog(GetLogRequest request, ServerCallContext context)

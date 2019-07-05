@@ -1,9 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Text;
-using System.Data.SQLite;
 using System.Threading.Tasks;
-using static Messages.Log;
 
 namespace logging_grpc_server
 {
@@ -29,7 +26,7 @@ namespace logging_grpc_server
 
         public Task<Guid> LogAsync(string message, string logType)
         {
-            Guid g = new Guid();
+            Guid g = Guid.NewGuid();
             lock (inMemoryDb)
             {
                 inMemoryDb.Add(new Messages.Log()

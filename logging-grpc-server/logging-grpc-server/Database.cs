@@ -52,5 +52,10 @@ namespace logging_grpc_server
             }
             throw new Exception($"Log not found with GuID {g.ToString()}.");
         }
+
+        public Task<List<Messages.LogMessage>> GetAllLogs()
+        {
+            return Task.FromResult(inMemoryDb);
+        }
     }
 }

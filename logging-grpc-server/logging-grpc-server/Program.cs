@@ -1,6 +1,7 @@
 ﻿using Grpc.Core;
 using Messages;
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using static Messages.LogService;
 
@@ -53,6 +54,18 @@ namespace logging_grpc_server
                 {
                     Log = mes
                 };
+            }
+
+            public override async Task GetAllLogs(GetAllRequest request, IServerStreamWriter<GetLogResponse> responseStream, ServerCallContext context)
+            {
+                List<LogMessage> logs = await db.GetAllLogs();
+                foreach (var log in logs)
+                {
+                    await responseStream.WriteAsync(new GetLogResponse()
+                    {
+                        Log = log
+                    });
+                }
             }
         }
     }

@@ -30,4 +30,7 @@ guid_2_future = stub.Log.future(log1)
 guid_2 = guid_2_future.result()
 print("Logged with id %s." % str(guid_2).strip())
 
+print(stub.GetLog(guid_1))
+print(stub.GetLog(guid_2))
+
 channel.close()

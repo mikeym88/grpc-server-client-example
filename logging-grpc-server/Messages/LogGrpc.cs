@@ -16,6 +16,7 @@ namespace Messages {
     static readonly grpc::Marshaller<global::Messages.LogResponse> __Marshaller_LogResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Messages.LogResponse.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::Messages.GetLogRequest> __Marshaller_GetLogRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Messages.GetLogRequest.Parser.ParseFrom);
     static readonly grpc::Marshaller<global::Messages.GetLogResponse> __Marshaller_GetLogResponse = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Messages.GetLogResponse.Parser.ParseFrom);
+    static readonly grpc::Marshaller<global::Messages.GetAllRequest> __Marshaller_GetAllRequest = grpc::Marshallers.Create((arg) => global::Google.Protobuf.MessageExtensions.ToByteArray(arg), global::Messages.GetAllRequest.Parser.ParseFrom);
 
     static readonly grpc::Method<global::Messages.LogRequest, global::Messages.LogResponse> __Method_Log = new grpc::Method<global::Messages.LogRequest, global::Messages.LogResponse>(
         grpc::MethodType.Unary,
@@ -29,6 +30,13 @@ namespace Messages {
         __ServiceName,
         "GetLog",
         __Marshaller_GetLogRequest,
+        __Marshaller_GetLogResponse);
+
+    static readonly grpc::Method<global::Messages.GetAllRequest, global::Messages.GetLogResponse> __Method_GetAllLogs = new grpc::Method<global::Messages.GetAllRequest, global::Messages.GetLogResponse>(
+        grpc::MethodType.ServerStreaming,
+        __ServiceName,
+        "GetAllLogs",
+        __Marshaller_GetAllRequest,
         __Marshaller_GetLogResponse);
 
     /// <summary>Service descriptor</summary>
@@ -47,6 +55,11 @@ namespace Messages {
       }
 
       public virtual global::System.Threading.Tasks.Task<global::Messages.GetLogResponse> GetLog(global::Messages.GetLogRequest request, grpc::ServerCallContext context)
+      {
+        throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
+      }
+
+      public virtual global::System.Threading.Tasks.Task GetAllLogs(global::Messages.GetAllRequest request, grpc::IServerStreamWriter<global::Messages.GetLogResponse> responseStream, grpc::ServerCallContext context)
       {
         throw new grpc::RpcException(new grpc::Status(grpc::StatusCode.Unimplemented, ""));
       }
@@ -108,6 +121,14 @@ namespace Messages {
       {
         return CallInvoker.AsyncUnaryCall(__Method_GetLog, null, options, request);
       }
+      public virtual grpc::AsyncServerStreamingCall<global::Messages.GetLogResponse> GetAllLogs(global::Messages.GetAllRequest request, grpc::Metadata headers = null, global::System.DateTime? deadline = null, global::System.Threading.CancellationToken cancellationToken = default(global::System.Threading.CancellationToken))
+      {
+        return GetAllLogs(request, new grpc::CallOptions(headers, deadline, cancellationToken));
+      }
+      public virtual grpc::AsyncServerStreamingCall<global::Messages.GetLogResponse> GetAllLogs(global::Messages.GetAllRequest request, grpc::CallOptions options)
+      {
+        return CallInvoker.AsyncServerStreamingCall(__Method_GetAllLogs, null, options, request);
+      }
       /// <summary>Creates a new instance of client from given <c>ClientBaseConfiguration</c>.</summary>
       protected override LogServiceClient NewInstance(ClientBaseConfiguration configuration)
       {
@@ -121,7 +142,8 @@ namespace Messages {
     {
       return grpc::ServerServiceDefinition.CreateBuilder()
           .AddMethod(__Method_Log, serviceImpl.Log)
-          .AddMethod(__Method_GetLog, serviceImpl.GetLog).Build();
+          .AddMethod(__Method_GetLog, serviceImpl.GetLog)
+          .AddMethod(__Method_GetAllLogs, serviceImpl.GetAllLogs).Build();
     }
 
     /// <summary>Register service method with a service binder with or without implementation. Useful when customizing the  service binding logic.
@@ -132,6 +154,7 @@ namespace Messages {
     {
       serviceBinder.AddMethod(__Method_Log, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Messages.LogRequest, global::Messages.LogResponse>(serviceImpl.Log));
       serviceBinder.AddMethod(__Method_GetLog, serviceImpl == null ? null : new grpc::UnaryServerMethod<global::Messages.GetLogRequest, global::Messages.GetLogResponse>(serviceImpl.GetLog));
+      serviceBinder.AddMethod(__Method_GetAllLogs, serviceImpl == null ? null : new grpc::ServerStreamingServerMethod<global::Messages.GetAllRequest, global::Messages.GetLogResponse>(serviceImpl.GetAllLogs));
     }
 
   }

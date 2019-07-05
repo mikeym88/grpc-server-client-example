@@ -13,11 +13,11 @@ namespace logging_grpc_server
         {
             Console.WriteLine("Starting logging service.");
             const int Port = 9000;
-            
+
             Server server = new Server
             {
                 Ports = { new ServerPort("0.0.0.0", Port, ServerCredentials.Insecure) },
-                Services = {BindService(new LogService()) }
+                Services = { BindService(new LogService()) }
             };
             server.Start();
 
@@ -27,13 +27,13 @@ namespace logging_grpc_server
 
             server.ShutdownAsync().Wait();
         }
-        
+
         public class LogService : LogServiceBase
         {
             public override async Task<LogResponse> Log(LogRequest request, ServerCallContext context)
             {
-                Console.WriteLine($"Adding Log of Type {request.Log.Type}: {request.Log.Message}");
-                Guid g = await db.LogAsync(request.Log.Message, request.Log.Type);
+                Console.WriteLine($"Adding Log of Type {request.Log.Type.ToString()}: {request.Log.Message}");
+                Guid g = await db.LogAsync(request.Log.Message, request.Log.Type.ToString());
                 Console.WriteLine($"Logged successully: {g}");
                 return new LogResponse()
                 {

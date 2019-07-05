@@ -4,7 +4,14 @@ option csharp_namespace = "Messages";
 
 message LogMessage {
     string guid = 1;
-    string type = 2;
+    enum Type {
+        INFO = 0;
+        WARNING = 1;
+        ERROR = 2;
+        CRITICAL = 3;
+        OTHER = 4;
+    }
+    Type type = 2;
     string message = 3;
 }
 
@@ -24,7 +31,10 @@ message GetLogResponse {
     LogMessage log = 1;
 }
 
+message GetAllRequest { }
+
 service LogService {
     rpc Log (LogRequest) returns (LogResponse);
     rpc GetLog (GetLogRequest) returns (GetLogResponse);
+    rpc GetAllLogs (GetAllRequest) returns (stream GetLogResponse);
 }

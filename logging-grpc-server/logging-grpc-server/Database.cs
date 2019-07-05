@@ -33,7 +33,7 @@ namespace logging_grpc_server
                 {
                     Guid = g.ToString(),
                     Message = message,
-                    Type = logType
+                    Type = Enum.Parse<Messages.LogMessage.Types.Type>(logType)
                 });
             }
 

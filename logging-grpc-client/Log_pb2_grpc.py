@@ -24,6 +24,11 @@ class LogServiceStub(object):
         request_serializer=Log__pb2.GetLogRequest.SerializeToString,
         response_deserializer=Log__pb2.GetLogResponse.FromString,
         )
+    self.GetAllLogs = channel.unary_stream(
+        '/LogService/GetAllLogs',
+        request_serializer=Log__pb2.GetAllRequest.SerializeToString,
+        response_deserializer=Log__pb2.GetLogResponse.FromString,
+        )
 
 
 class LogServiceServicer(object):
@@ -44,6 +49,13 @@ class LogServiceServicer(object):
     context.set_details('Method not implemented!')
     raise NotImplementedError('Method not implemented!')
 
+  def GetAllLogs(self, request, context):
+    # missing associated documentation comment in .proto file
+    pass
+    context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+    context.set_details('Method not implemented!')
+    raise NotImplementedError('Method not implemented!')
+
 
 def add_LogServiceServicer_to_server(servicer, server):
   rpc_method_handlers = {
@@ -55,6 +67,11 @@ def add_LogServiceServicer_to_server(servicer, server):
       'GetLog': grpc.unary_unary_rpc_method_handler(
           servicer.GetLog,
           request_deserializer=Log__pb2.GetLogRequest.FromString,
+          response_serializer=Log__pb2.GetLogResponse.SerializeToString,
+      ),
+      'GetAllLogs': grpc.unary_stream_rpc_method_handler(
+          servicer.GetAllLogs,
+          request_deserializer=Log__pb2.GetAllRequest.FromString,
           response_serializer=Log__pb2.GetLogResponse.SerializeToString,
       ),
   }
